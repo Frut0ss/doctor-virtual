@@ -1,38 +1,189 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa; /* Fondo gris muy claro, suave */
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  position: relative;
+  overflow: hidden; /* Elimina el scroll horizontal y vertical */
+}
+
+.app-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 800px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 15px; /* Bordes redondeados para un aspecto más suave */
+  box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+}
+
+.app-title {
+  text-align: center;
+  color: #1b263b; /* Azul profundo */
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.chat-window {
+  border: 1px solid #cfd8dc; /* Azul grisáceo claro para los bordes */
+  border-radius: 8px;
+  height: 400px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 15px;
+  background-color: #f0f4f8; /* Fondo azul claro para el chat */
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+  position: relative;
+  box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+}
+
+.chat-window .user {
+  text-align: right;
+  margin-bottom: 10px;
+  animation: slideInRight 0.5s ease-out;
+}
+
+.chat-window .bot {
+  text-align: left;
+  margin-bottom: 10px;
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.chat-window .user, .chat-window .bot {
+  padding: 12px;
+  border-radius: 18px; /* Bordes más suaves */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-window .user {
+  background-color: #4a69bd; /* Azul vibrante para el usuario */
+  color: #ffffff; /* Texto blanco */
+  display: inline-block;
+}
+
+.chat-window .bot {
+  background-color: #78e08f; /* Verde claro y fresco para el bot */
+  color: #ffffff; /* Texto blanco */
+  display: inline-block;
+}
+
+input[type="text"] {
+  width: 96.1%;
+  min-height: 50px;
+  padding: 14px 18px;
+  border-radius: 25px;
+  border: 1px solid #b0bec5; /* Gris azulado para el borde */
+  margin-right: 10px;
+  font-size: 16px;
+  resize: none;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #4a69bd; /* Azul vibrante para el foco */
+}
+
+button {
+  padding: 12px 20px;
+  background-color: #4a69bd; /* Azul vibrante para el botón */
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 120px;
+  height: 50px;
+}
+
+button:hover {  
+  background-color: #3b4e7b; /* Azul más oscuro para el hover */
+}
+
+button:focus {
+  outline: none;
+}
+
+.chat-input {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 600px) {
+  .app-container {
+    margin: 10px auto;
+    padding: 10px;
   }
-  to {
-    transform: rotate(360deg);
+
+  input[type="text"] {
+    width: 81%;
+    margin: 20px;
+  }
+
+  .chat-window{
+    margin: 20px;
+  }
+  .button-div {
+    text-align: center;
+  }
+}
+
+/* Estilo para el placeholder (mensaje de bienvenida) */
+.chat-window .placeholder {
+  background-color: #d1f2eb; /* Verde suave */
+  color: #0c3c27; /* Verde oscuro para el texto */
+  font-size: 18px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 400; /* Un poco más grueso para destacar */
+  border: 1px solid #76c7b7; /* Borde verde vibrante */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 1s ease-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Animación para el placeholder */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animaciones para los mensajes */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
